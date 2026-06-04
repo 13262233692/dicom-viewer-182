@@ -1,0 +1,96 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Migrating to `safe-transmute` v0.11"><title>safe_transmute::migration::v0_11 - Rust</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-17e0aaed.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="safe_transmute" data-themes="" data-resource-suffix="" data-rustdoc-version="1.96.0 (ac68faa20 2026-05-25)" data-channel="1.96.0" data-search-js="search-b5634cc7.js" data-stringdex-js="stringdex-2da4960a.js" data-settings-js="settings-170eb4bf.js" ><script src="../../../static.files/storage-41dd4d93.js"></script><script defer src="../sidebar-items.js"></script><script defer src="../../../static.files/main-5013f961.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-f7c3ffd8.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc mod"><a class="skip-main-content" href="#main-content">Skip to main content</a><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><rustdoc-topbar><h2><a href="#">Module v0_11</a></h2></rustdoc-topbar><nav class="sidebar"><div class="sidebar-crate"><h2><a href="../../../safe_transmute/index.html">safe_<wbr>transmute</a><span class="version">0.11.3</span></h2></div><div class="sidebar-elems"><section id="rustdoc-toc"><h2 class="location"><a href="#">Module v0_11</a></h2><h3><a href="#">Sections</a></h3><ul class="block top-toc"><li><a href="#organization" title="Organization">Organization</a></li><li><a href="#transmuting-slices" title="Transmuting slices">Transmuting slices</a></li><li><a href="#transmuting-vectors" title="Transmuting vectors">Transmuting vectors</a></li></ul></section><div id="rustdoc-modnav"><h2><a href="../index.html">In safe_<wbr>transmute::<wbr>migration</a></h2></div></div></nav><div class="sidebar-resizer" title="Drag to resize sidebar"></div><main><div class="width-limiter"><section id="main-content" class="content" tabindex="-1"><div class="main-heading"><div class="rustdoc-breadcrumbs"><a href="../../index.html">safe_transmute</a>::<wbr><a href="../index.html">migration</a></div><h1>Module <span>v0_11</span>&nbsp;<button id="copy-path" title="Copy item path to clipboard">Copy item path</button></h1><rustdoc-toolbar></rustdoc-toolbar><span class="sub-heading"><a class="src" href="../../../src/safe_transmute/migration/v0_11.rs.html#1-125">Source</a> </span></div><details class="toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>Migrating to <code>safe-transmute</code> v0.11</p>
+<p>This guide starts with a forewarning: <code>safe-transmute</code> had many safety issues before this version,
+which means that there is a chance of your dependent project facing undefined behavior. Migrating
+to version 0.11 is recommended as soon as possible, even if it might lead to a sub-optimal solution.</p>
+<h3 id="organization"><a class="doc-anchor" href="#organization">§</a>Organization</h3>
+<p>The crate is now organized with the following major categories:</p>
+<ul>
+<li><code>base</code> contains all baseline conversion functions. They are only protected against out of boundary
+access, like trying to create an 8-byte type from 7 bytes. However, they are still unsafe: any
+attempt of transmuting data to an invalid memory representation is still undefined behavior.
+Moreover, unaligned memory access is not prevented, and must be previously ensured by the caller.</li>
+<li>The <code>trivial</code> module introduces the concept of being <em>trivially transmutable</em>, which
+statically ensures that any bit combination makes a valid value for a given type. Basically,
+if a type <code>T</code> can be filled with any arbitrary bits in its memory representation and still be
+valid, then <code>T</code> is trivially transmutable. Most primitive types implement the <code>TriviallyTransmutable</code>
+trait, as well as arrays of trivially transmutable types, but new types (such as repr-C structs)
+need to <code>unsafe impl</code> it manually. Functions in this module are therefore safer than the baseline,
+but are still unsafe because they do not check for memory alignment.</li>
+<li><code>to_bytes</code> enables the opposite operation of reintepreting values as bytes. They are usually safe
+unless when working with mutable slices, since they can break invariants of the source type.</li>
+<li>The <code>bool</code> module ensures safe transmutation of bytes to boolean values.</li>
+<li>That leaves the <code>full</code> functions at the crate root. These are transmutation functions with enough
+checks to be considered safe to use in any circumstance. The operation may still arbitrarily
+return (recoverable) errors due to unaligned data or incompatible vector transmutation targets,
+but it will not eat your laundry, and helper functions are available to assist the user in
+making some use cases work.</li>
+</ul>
+<p>Moreover, three utility modules have also been provided:</p>
+<ul>
+<li>The <code>guard</code> module contains the <strong>Guard API</strong>, which imposes slice boundary restrictions in a conversion.</li>
+<li>The <code>align</code> module is where alignment checks are implemented.</li>
+<li>The <code>util</code> module provides some independent helper functions.</li>
+</ul>
+<p>Generally, you are strongly advised to <em>stick to the functions provided at the crate root</em>.
+These are re-exports from the <code>full</code>, <code>bool</code>, and <code>to_bytes</code> categories depending on their safety.</p>
+<h3 id="transmuting-slices"><a class="doc-anchor" href="#transmuting-slices">§</a>Transmuting slices</h3>
+<p>One of the major use cases of the crate is to grab a slice of bytes and reinterpret it as a slice of
+another type. This process is accompanied with a check for the source slice length, so that it
+makes some sense as the target type. If you expect any number of elements of the target type, use
+<code>transmute_many_permissive()</code>.</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>safe_transmute::{Error, transmute_many_permissive};
+
+<span class="kw">let </span>bytes = <span class="kw-2">&amp;</span>[<span class="number">0x00</span>, <span class="number">0x01</span>, <span class="number">0x12</span>, <span class="number">0x24</span>,
+              <span class="number">0x00</span>]; <span class="comment">// 1 spare byte
+
+</span><span class="kw">match </span>transmute_many_permissive::&lt;u16&gt;(bytes) {
+    <span class="prelude-val">Ok</span>(words) =&gt; {
+        <span class="macro">assert_eq!</span>(words,
+                   [u16::from_be(<span class="number">0x0001</span>), u16::from_be(<span class="number">0x1224</span>)]);
+    },
+    <span class="prelude-val">Err</span>(Error::Unaligned(e)) =&gt; {
+        <span class="comment">// Copy needed, would otherwise trap on some archs
+        </span><span class="kw">let </span>words = e.copy();
+        <span class="macro">assert_eq!</span>(<span class="kw-2">*</span>words,
+                   [u16::from_be(<span class="number">0x0001</span>), u16::from_be(<span class="number">0x1224</span>)]);
+    },
+    <span class="prelude-val">Err</span>(e) =&gt; <span class="macro">panic!</span>(<span class="string">"Unexpected error: {}"</span>, e),
+}</code></pre></div>
+<p><code>transmute_many_permissive()</code> is an alias for <code>transmute_many()</code> with <code>PermissiveGuard</code>
+as the guard type parameter. If you expect at least 1 element, use <code>transmute_many()</code> with the
+<code>SingleManyGuard</code> as the guard type. If you expect at least one element and no extraneous bytes, use
+<code>transmute_many_pedantic()</code>, or <code>transmute_many()</code> with <code>PedanticGuard</code>.</p>
+<p>As you can see, we had to manually handle the case where the slice of bytes is not well aligned for
+reading target data, such as from <code>u8</code> to <code>u16</code>. If the slice’s first element is not aligned for
+reading <code>u16</code>s, the operation will just fail with <code>Error::Unaligned</code>. The only way to move on from
+here is to copy the data (provided by the <code>Error::copy()</code> method).</p>
+<p>The good news is that this boilerplate can be off-loaded to the <code>try_copy!</code> macro. Here’s how you’ll
+often be doing transmutations:</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>safe_transmute::{transmute_many_permissive, try_copy};
+
+<span class="kw">let </span>bytes = <span class="kw-2">&amp;</span>[<span class="number">0x00</span>, <span class="number">0x01</span>, <span class="number">0x12</span>, <span class="number">0x24</span>, <span class="number">0x00</span>];
+<span class="kw">let </span>words = <span class="macro">try_copy!</span>(transmute_many_permissive::&lt;u16&gt;(bytes));
+
+<span class="macro">assert_eq!</span>(<span class="kw-2">&amp;*</span>words, <span class="kw-2">&amp;</span>[u16::from_be(<span class="number">0x0001</span>), u16::from_be(<span class="number">0x1224</span>)]);</code></pre></div>
+<p>You will also find <code>to_bytes</code>, <code>mut</code>, and <code>bool</code> variants of these functions. <code>transmute_to_bytes()</code> turns any slice into
+a slice of bytes. Functions from the <code>*_mut()</code> family work with mutable slices. <code>transmute_bool()</code> checks whether all bytes
+make valid boolean values beforehand.</p>
+<h3 id="transmuting-vectors"><a class="doc-anchor" href="#transmuting-vectors">§</a>Transmuting vectors</h3>
+<p>You might have used <code>safe-transmute</code>’s vector transmutation functions. Well, it turns out that they are
+<strong>incredibly unsafe</strong>, and hard to get right. This will be more complicated to migrate efficiently.
+The new <code>transmute_vec()</code> only works under very restricted conditions: the <code>mem::align_of()</code> and <code>mem::size_of()</code> between
+the source and target element types must match. Otherwise, a full copy of the vector must be made.</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>safe_transmute::{transmute_vec, try_copy};
+
+<span class="kw">let </span>bytes = <span class="macro">vec!</span>[<span class="number">0x00</span>, <span class="number">0x01</span>, <span class="number">0x12</span>, <span class="number">0x24</span>, <span class="number">0x00</span>];
+<span class="kw">let </span>words = <span class="macro">try_copy!</span>(transmute_vec::&lt;<span class="kw">_</span>, u16&gt;(bytes)); <span class="comment">// !!! works, but will always copy
+
+</span><span class="macro">assert_eq!</span>(<span class="kw-2">&amp;*</span>words, <span class="kw-2">&amp;</span>[u16::from_be(<span class="number">0x0001</span>), u16::from_be(<span class="number">0x1224</span>)]);</code></pre></div>
+<p>Oftentimes, you’ll just be avoiding vector transmutation entirely.</p>
+<p>In order to avoid copies, you can allocate a vector of the target type <code>T</code>, transmute a mutable slice of the vector
+into the source data type <code>S</code>, and write the data in there directly. This still requires both <code>S</code> and <code>T</code> to be
+trivially transmutable in order to be within the compiler’s safety guarantees, though.</p>
+</div></details></section></div></main></body></html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Buffer used as input value for image encoding"><title>ImageBuffer in jpeg_encoder - Rust</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../static.files/rustdoc-17e0aaed.css"><meta name="rustdoc-vars" data-root-path="../" data-static-root-path="../static.files/" data-current-crate="jpeg_encoder" data-themes="" data-resource-suffix="" data-rustdoc-version="1.96.0 (ac68faa20 2026-05-25)" data-channel="1.96.0" data-search-js="search-b5634cc7.js" data-stringdex-js="stringdex-2da4960a.js" data-settings-js="settings-170eb4bf.js" ><script src="../static.files/storage-41dd4d93.js"></script><script defer src="sidebar-items.js"></script><script defer src="../static.files/main-5013f961.js"></script><noscript><link rel="stylesheet" href="../static.files/noscript-f7c3ffd8.css"></noscript><link rel="alternate icon" type="image/png" href="../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../static.files/favicon-044be391.svg"></head><body class="rustdoc trait"><a class="skip-main-content" href="#main-content">Skip to main content</a><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><rustdoc-topbar><h2><a href="#">ImageBuffer</a></h2></rustdoc-topbar><nav class="sidebar"><div class="sidebar-crate"><h2><a href="../jpeg_encoder/index.html">jpeg_<wbr>encoder</a><span class="version">0.6.1</span></h2></div><div class="sidebar-elems"><section id="rustdoc-toc"><h2 class="location"><a href="#">Image<wbr>Buffer</a></h2><h3><a href="#">Sections</a></h3><ul class="block top-toc"><li><a href="#buffer-used-as-input-value-for-image-encoding" title="Buffer used as input value for image encoding">Buffer used as input value for image encoding</a><ul><li><a href="#example-imagebuffer-implementation-for-rgbimage-from-the-image-crate" title="Example: ImageBuffer implementation for RgbImage from the `image` crate">Example: ImageBuffer implementation for RgbImage from the <code>image</code> crate</a></li></ul></li></ul><h3><a href="#required-methods">Required Methods</a></h3><ul class="block"><li><a href="#tymethod.fill_buffers" title="fill_buffers">fill_buffers</a></li><li><a href="#tymethod.get_jpeg_color_type" title="get_jpeg_color_type">get_jpeg_color_type</a></li><li><a href="#tymethod.height" title="height">height</a></li><li><a href="#tymethod.width" title="width">width</a></li></ul><h3><a href="#implementors">Implementors</a></h3></section><div id="rustdoc-modnav"><h2 class="in-crate"><a href="index.html">In crate jpeg_<wbr>encoder</a></h2></div></div></nav><div class="sidebar-resizer" title="Drag to resize sidebar"></div><main><div class="width-limiter"><section id="main-content" class="content" tabindex="-1"><div class="main-heading"><div class="rustdoc-breadcrumbs"><a href="index.html">jpeg_encoder</a></div><h1>Trait <span class="trait">Image<wbr>Buffer</span>&nbsp;<button id="copy-path" title="Copy item path to clipboard">Copy item path</button></h1><rustdoc-toolbar></rustdoc-toolbar><span class="sub-heading"><a class="src" href="../src/jpeg_encoder/image_buffer.rs.html#86-98">Source</a> </span></div><pre class="rust item-decl"><code>pub trait ImageBuffer {
+    // Required methods
+    fn <a href="#tymethod.get_jpeg_color_type" class="fn">get_jpeg_color_type</a>(&amp;self) -&gt; <a class="enum" href="enum.JpegColorType.html" title="enum jpeg_encoder::JpegColorType">JpegColorType</a>;
+<span class="item-spacer"></span>    fn <a href="#tymethod.width" class="fn">width</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/1.96.0/std/primitive.u16.html">u16</a>;
+<span class="item-spacer"></span>    fn <a href="#tymethod.height" class="fn">height</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/1.96.0/std/primitive.u16.html">u16</a>;
+<span class="item-spacer"></span>    fn <a href="#tymethod.fill_buffers" class="fn">fill_buffers</a>(&amp;self, y: <a class="primitive" href="https://doc.rust-lang.org/1.96.0/std/primitive.u16.html">u16</a>, buffers: &amp;mut [<a class="struct" href="https://doc.rust-lang.org/1.96.0/alloc/vec/struct.Vec.html" title="struct alloc::vec::Vec">Vec</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/1.96.0/std/primitive.u8.html">u8</a>&gt;; <a class="primitive" href="https://doc.rust-lang.org/1.96.0/std/primitive.array.html">4</a>]);
+}</code></pre><details class="toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><h2 id="buffer-used-as-input-value-for-image-encoding"><a class="doc-anchor" href="#buffer-used-as-input-value-for-image-encoding">§</a>Buffer used as input value for image encoding</h2>
+<p>Image encoding with <a href="struct.Encoder.html#method.encode_image" title="method jpeg_encoder::Encoder::encode_image">Encoder::encode_image</a> needs an ImageBuffer
+as input for the image data. For convenience the <a href="struct.Encoder.html#method.encode" title="method jpeg_encoder::Encoder::encode">Encoder::encode</a>
+function contains implementations for common byte based pixel formats.
+Users that needs other pixel formats or don’t have the data available as byte slices
+can create their own buffer implementations.</p>
+<h3 id="example-imagebuffer-implementation-for-rgbimage-from-the-image-crate"><a class="doc-anchor" href="#example-imagebuffer-implementation-for-rgbimage-from-the-image-crate">§</a>Example: ImageBuffer implementation for RgbImage from the <code>image</code> crate</h3><div class="example-wrap"><pre class="language-no_compile"><code>use image::RgbImage;
+use jpeg_encoder::{ImageBuffer, JpegColorType, rgb_to_ycbcr};
+
+pub struct RgbImageBuffer {
+    image: RgbImage,
+}
+
+impl ImageBuffer for RgbImageBuffer {
+    fn get_jpeg_color_type(&amp;self) -&gt; JpegColorType {
+        // Rgb images are encoded as YCbCr in JFIF files
+        JpegColorType::Ycbcr
+    }
+
+    fn width(&amp;self) -&gt; u16 {
+        self.image.width() as u16
+    }
+
+    fn height(&amp;self) -&gt; u16 {
+        self.image.height() as u16
+    }
+
+    fn fill_buffers(&amp;self, y: u16, buffers: &amp;mut [Vec&lt;u8&gt;; 4]){
+        for x in 0..self.width() {
+            let pixel = self.image.get_pixel(x as u32 ,y as u32);
+
+            let (y,cb,cr) = rgb_to_ycbcr(pixel[0], pixel[1], pixel[2]);
+
+            // For YCbCr the 4th buffer is not used
+            buffers[0].push(y);
+            buffers[1].push(cb);
+            buffers[2].push(cr);
+        }
+    }
+}
+</code></pre></div></div></details><h2 id="required-methods" class="section-header">Required Methods<a href="#required-methods" class="anchor">§</a></h2><div class="methods"><details class="toggle method-toggle" open><summary><section id="tymethod.get_jpeg_color_type" class="method"><a class="src rightside" href="../src/jpeg_encoder/image_buffer.rs.html#88">Source</a><h4 class="code-header">fn <a href="#tymethod.get_jpeg_color_type" class="fn">get_jpeg_color_type</a>(&amp;self) -&gt; <a class="enum" href="enum.JpegColorType.html" title="enum jpeg_encoder::JpegColorType">JpegColorType</a></h4></section></summary><div class="docblock"><p>The color type used in the image encoding</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="tymethod.width" class="method"><a class="src rightside" href="../src/jpeg_encoder/image_buffer.rs.html#91">Source</a><h4 class="code-header">fn <a href="#tymethod.width" class="fn">width</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/1.96.0/std/primitive.u16.html">u16</a></h4></section></summary><div class="docblock"><p>Width of the image</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="tymethod.height" class="method"><a class="src rightside" href="../src/jpeg_encoder/image_buffer.rs.html#94">Source</a><h4 class="code-header">fn <a href="#tymethod.height" class="fn">height</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/1.96.0/std/primitive.u16.html">u16</a></h4></section></summary><div class="docblock"><p>Height of the image</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="tymethod.fill_buffers" class="method"><a class="src rightside" href="../src/jpeg_encoder/image_buffer.rs.html#97">Source</a><h4 class="code-header">fn <a href="#tymethod.fill_buffers" class="fn">fill_buffers</a>(&amp;self, y: <a class="primitive" href="https://doc.rust-lang.org/1.96.0/std/primitive.u16.html">u16</a>, buffers: &amp;mut [<a class="struct" href="https://doc.rust-lang.org/1.96.0/alloc/vec/struct.Vec.html" title="struct alloc::vec::Vec">Vec</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/1.96.0/std/primitive.u8.html">u8</a>&gt;; <a class="primitive" href="https://doc.rust-lang.org/1.96.0/std/primitive.array.html">4</a>])</h4></section></summary><div class="docblock"><p>Add color values for the row to color component buffers</p>
+</div></details></div><h2 id="implementors" class="section-header">Implementors<a href="#implementors" class="anchor">§</a></h2><div id="implementors-list"></div><script src="../trait.impl/jpeg_encoder/image_buffer/trait.ImageBuffer.js" async></script></section></div></main></body></html>

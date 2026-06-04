@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"fn":["align_to","align_to_mut","guarded_transmute_pod_many_pedantic","guarded_transmute_pod_many_permissive","transmute_trivial","transmute_trivial_many","transmute_trivial_many_mut","transmute_trivial_pedantic","transmute_trivial_vec"],"trait":["TriviallyTransmutable"]};

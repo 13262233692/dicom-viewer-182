@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"enum":["ConversionType","NumericParam","PrintfError"],"fn":["vsprintf"],"macro":["sprintf"],"struct":["ConversionSpecifier"],"trait":["Printf"],"type":["Result"]};

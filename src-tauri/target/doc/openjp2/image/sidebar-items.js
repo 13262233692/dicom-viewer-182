@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"fn":["opj_image_create","opj_image_destroy","opj_image_tile_create"],"struct":["opj_image_comptparm"],"type":["opj_image_cmptparm_t"]};

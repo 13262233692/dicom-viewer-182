@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"fn":["designalise_f32","designalise_f64","from_bits_f32_designalised","from_bits_f64_designalised"]};

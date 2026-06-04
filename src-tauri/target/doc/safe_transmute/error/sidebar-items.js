@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"enum":["Error","ErrorReason"],"struct":["GuardError","IncompatibleVecTargetError","UnalignedError"]};

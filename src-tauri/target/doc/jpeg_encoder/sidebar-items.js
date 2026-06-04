@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"enum":["ColorType","Density","EncodingError","JpegColorType","QuantizationTableType","SamplingFactor"],"fn":["cmyk_to_ycck","rgb_to_ycbcr"],"struct":["Encoder"],"trait":["ImageBuffer","JfifWrite"]};

@@ -1,0 +1,14 @@
+D:\SOLO-5\dicom-viewer-182\src-tauri\target\debug\deps\serde-ba5c635907eb0c0b.d: C:\Users\ZhuanZ\.cargo\registry\src\mirrors.aliyun.com-0671735e7cc7f5e7\serde-1.0.228\src\lib.rs C:\Users\ZhuanZ\.cargo\registry\src\mirrors.aliyun.com-0671735e7cc7f5e7\serde-1.0.228\src\integer128.rs C:\Users\ZhuanZ\.cargo\registry\src\mirrors.aliyun.com-0671735e7cc7f5e7\serde-1.0.228\src\private\mod.rs C:\Users\ZhuanZ\.cargo\registry\src\mirrors.aliyun.com-0671735e7cc7f5e7\serde-1.0.228\src\private\de.rs C:\Users\ZhuanZ\.cargo\registry\src\mirrors.aliyun.com-0671735e7cc7f5e7\serde-1.0.228\src\private\ser.rs D:\SOLO-5\dicom-viewer-182\src-tauri\target\debug\build\serde-00f8739e3640a468\out/private.rs
+
+D:\SOLO-5\dicom-viewer-182\src-tauri\target\debug\deps\libserde-ba5c635907eb0c0b.rlib: C:\Users\ZhuanZ\.cargo\registry\src\mirrors.aliyun.com-0671735e7cc7f5e7\serde-1.0.228\src\lib.rs C:\Users\ZhuanZ\.cargo\registry\src\mirrors.aliyun.com-0671735e7cc7f5e7\serde-1.0.228\src\integer128.rs C:\Users\ZhuanZ\.cargo\registry\src\mirrors.aliyun.com-0671735e7cc7f5e7\serde-1.0.228\src\private\mod.rs C:\Users\ZhuanZ\.cargo\registry\src\mirrors.aliyun.com-0671735e7cc7f5e7\serde-1.0.228\src\private\de.rs C:\Users\ZhuanZ\.cargo\registry\src\mirrors.aliyun.com-0671735e7cc7f5e7\serde-1.0.228\src\private\ser.rs D:\SOLO-5\dicom-viewer-182\src-tauri\target\debug\build\serde-00f8739e3640a468\out/private.rs
+
+D:\SOLO-5\dicom-viewer-182\src-tauri\target\debug\deps\libserde-ba5c635907eb0c0b.rmeta: C:\Users\ZhuanZ\.cargo\registry\src\mirrors.aliyun.com-0671735e7cc7f5e7\serde-1.0.228\src\lib.rs C:\Users\ZhuanZ\.cargo\registry\src\mirrors.aliyun.com-0671735e7cc7f5e7\serde-1.0.228\src\integer128.rs C:\Users\ZhuanZ\.cargo\registry\src\mirrors.aliyun.com-0671735e7cc7f5e7\serde-1.0.228\src\private\mod.rs C:\Users\ZhuanZ\.cargo\registry\src\mirrors.aliyun.com-0671735e7cc7f5e7\serde-1.0.228\src\private\de.rs C:\Users\ZhuanZ\.cargo\registry\src\mirrors.aliyun.com-0671735e7cc7f5e7\serde-1.0.228\src\private\ser.rs D:\SOLO-5\dicom-viewer-182\src-tauri\target\debug\build\serde-00f8739e3640a468\out/private.rs
+
+C:\Users\ZhuanZ\.cargo\registry\src\mirrors.aliyun.com-0671735e7cc7f5e7\serde-1.0.228\src\lib.rs:
+C:\Users\ZhuanZ\.cargo\registry\src\mirrors.aliyun.com-0671735e7cc7f5e7\serde-1.0.228\src\integer128.rs:
+C:\Users\ZhuanZ\.cargo\registry\src\mirrors.aliyun.com-0671735e7cc7f5e7\serde-1.0.228\src\private\mod.rs:
+C:\Users\ZhuanZ\.cargo\registry\src\mirrors.aliyun.com-0671735e7cc7f5e7\serde-1.0.228\src\private\de.rs:
+C:\Users\ZhuanZ\.cargo\registry\src\mirrors.aliyun.com-0671735e7cc7f5e7\serde-1.0.228\src\private\ser.rs:
+D:\SOLO-5\dicom-viewer-182\src-tauri\target\debug\build\serde-00f8739e3640a468\out/private.rs:
+
+# env-dep:OUT_DIR=D:\\SOLO-5\\dicom-viewer-182\\src-tauri\\target\\debug\\build\\serde-00f8739e3640a468\\out

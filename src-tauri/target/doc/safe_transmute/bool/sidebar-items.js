@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"fn":["bytes_are_bool","transmute_bool_pedantic","transmute_bool_permissive","transmute_bool_vec_pedantic","transmute_bool_vec_permissive"]};

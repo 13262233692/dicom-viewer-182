@@ -1,0 +1,2 @@
+cargo:rustc-cfg=rustc_has_pr45225
+cargo:rerun-if-changed=C:\Users\ZhuanZ\.cargo\registry\src\mirrors.aliyun.com-0671735e7cc7f5e7\cssparser-0.27.2\src/tokenizer.rs

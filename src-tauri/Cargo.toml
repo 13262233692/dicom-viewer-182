@@ -1,0 +1,25 @@
+[package]
+name = "dicom-viewer"
+version = "0.1.0"
+description = "DICOM Medical Image Viewer"
+authors = ["DICOM Viewer Team"]
+edition = "2021"
+rust-version = "1.70"
+
+[build-dependencies]
+tauri-build = { version = "1.5", features = [] }
+
+[dependencies]
+tauri = { version = "1.5", features = ["api-all"] }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+dicom = { version = "0.6", features = ["pixeldata"] }
+walkdir = "2.4"
+rayon = "1.8"
+thiserror = "1.0"
+log = "0.4"
+env_logger = "0.10"
+
+[features]
+default = ["custom-protocol"]
+custom-protocol = ["tauri/custom-protocol"]

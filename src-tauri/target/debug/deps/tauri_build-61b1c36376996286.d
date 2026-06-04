@@ -1,0 +1,10 @@
+D:\SOLO-5\dicom-viewer-182\src-tauri\target\debug\deps\tauri_build-61b1c36376996286.d: C:\Users\ZhuanZ\.cargo\registry\src\mirrors.aliyun.com-0671735e7cc7f5e7\tauri-build-1.5.6\src\lib.rs C:\Users\ZhuanZ\.cargo\registry\src\mirrors.aliyun.com-0671735e7cc7f5e7\tauri-build-1.5.6\src\allowlist.rs C:\Users\ZhuanZ\.cargo\registry\src\mirrors.aliyun.com-0671735e7cc7f5e7\tauri-build-1.5.6\src\static_vcruntime.rs C:\Users\ZhuanZ\.cargo\registry\src\mirrors.aliyun.com-0671735e7cc7f5e7\tauri-build-1.5.6\src\window-app-manifest.xml
+
+D:\SOLO-5\dicom-viewer-182\src-tauri\target\debug\deps\libtauri_build-61b1c36376996286.rlib: C:\Users\ZhuanZ\.cargo\registry\src\mirrors.aliyun.com-0671735e7cc7f5e7\tauri-build-1.5.6\src\lib.rs C:\Users\ZhuanZ\.cargo\registry\src\mirrors.aliyun.com-0671735e7cc7f5e7\tauri-build-1.5.6\src\allowlist.rs C:\Users\ZhuanZ\.cargo\registry\src\mirrors.aliyun.com-0671735e7cc7f5e7\tauri-build-1.5.6\src\static_vcruntime.rs C:\Users\ZhuanZ\.cargo\registry\src\mirrors.aliyun.com-0671735e7cc7f5e7\tauri-build-1.5.6\src\window-app-manifest.xml
+
+D:\SOLO-5\dicom-viewer-182\src-tauri\target\debug\deps\libtauri_build-61b1c36376996286.rmeta: C:\Users\ZhuanZ\.cargo\registry\src\mirrors.aliyun.com-0671735e7cc7f5e7\tauri-build-1.5.6\src\lib.rs C:\Users\ZhuanZ\.cargo\registry\src\mirrors.aliyun.com-0671735e7cc7f5e7\tauri-build-1.5.6\src\allowlist.rs C:\Users\ZhuanZ\.cargo\registry\src\mirrors.aliyun.com-0671735e7cc7f5e7\tauri-build-1.5.6\src\static_vcruntime.rs C:\Users\ZhuanZ\.cargo\registry\src\mirrors.aliyun.com-0671735e7cc7f5e7\tauri-build-1.5.6\src\window-app-manifest.xml
+
+C:\Users\ZhuanZ\.cargo\registry\src\mirrors.aliyun.com-0671735e7cc7f5e7\tauri-build-1.5.6\src\lib.rs:
+C:\Users\ZhuanZ\.cargo\registry\src\mirrors.aliyun.com-0671735e7cc7f5e7\tauri-build-1.5.6\src\allowlist.rs:
+C:\Users\ZhuanZ\.cargo\registry\src\mirrors.aliyun.com-0671735e7cc7f5e7\tauri-build-1.5.6\src\static_vcruntime.rs:
+C:\Users\ZhuanZ\.cargo\registry\src\mirrors.aliyun.com-0671735e7cc7f5e7\tauri-build-1.5.6\src\window-app-manifest.xml:

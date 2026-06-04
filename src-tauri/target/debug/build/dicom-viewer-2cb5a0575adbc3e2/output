@@ -1,0 +1,11 @@
+cargo:rerun-if-env-changed=TAURI_CONFIG
+cargo:rerun-if-changed=tauri.conf.json
+cargo:rustc-check-cfg=cfg(desktop)
+cargo:rustc-cfg=desktop
+cargo:rustc-check-cfg=cfg(mobile)
+cargo:rustc-check-cfg=cfg(dev)
+package.metadata does not exist
+Microsoft (R) Windows (R) Resource Compiler Version 10.0.10011.16384
+Copyright (C) Microsoft Corporation.  All rights reserved.
+
+cargo:rustc-link-arg-bins=D:\SOLO-5\dicom-viewer-182\src-tauri\target\debug\build\dicom-viewer-2cb5a0575adbc3e2\out\resource.lib

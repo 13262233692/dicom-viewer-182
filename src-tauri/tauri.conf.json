@@ -1,0 +1,61 @@
+{
+  "build": {
+    "beforeDevCommand": "npm run dev",
+    "devPath": "http://localhost:1420",
+    "beforeBuildCommand": "npm run build",
+    "distDir": "../dist"
+  },
+  "package": {
+    "productName": "DICOM Viewer",
+    "version": "0.1.0"
+  },
+  "tauri": {
+    "allowlist": {
+      "all": true
+    },
+    "bundle": {
+      "active": true,
+      "category": "DeveloperTool",
+      "copyright": "",
+      "deb": {
+        "depends": []
+      },
+      "externalBin": [],
+      "icon": [],
+      "identifier": "com.dicomviewer.app",
+      "longDescription": "",
+      "macOS": {
+        "entitlements": null,
+        "exceptionDomain": "",
+        "frameworks": [],
+        "providerShortName": null,
+        "signingIdentity": null
+      },
+      "resources": [],
+      "shortDescription": "",
+      "targets": "all",
+      "windows": {
+        "certificateThumbprint": null,
+        "digestAlgorithm": "sha256",
+        "timestampUrl": ""
+      }
+    },
+    "security": {
+      "csp": null
+    },
+    "updater": {
+      "active": false
+    },
+    "windows": [
+      {
+        "fullscreen": false,
+        "height": 900,
+        "resizable": true,
+        "title": "DICOM Viewer",
+        "width": 1400,
+        "minWidth": 1000,
+        "minHeight": 700
+      }
+    ]
+  }
+}

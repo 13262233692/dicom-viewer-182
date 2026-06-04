@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"struct":["AllOrNothingGuard","PedanticGuard","PermissiveGuard","SingleManyGuard","SingleValueGuard"],"trait":["Guard"]};

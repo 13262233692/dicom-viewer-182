@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"fn":["transmute_many","transmute_many_mut","transmute_many_pedantic","transmute_many_pedantic_mut","transmute_many_permissive","transmute_many_permissive_mut","transmute_one","transmute_one_pedantic","transmute_vec"],"macro":["try_copy","try_copy_unchecked"],"mod":["align","base","bool","error","guard","migration","to_bytes","trivial","util"]};
